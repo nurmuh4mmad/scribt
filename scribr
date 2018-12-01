@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>creativfes</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">    
+
+
+    <style>
+        @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }
+		@viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }
+		@viewport { user-zoom: fixed ; min-zoom: 100% ; }
+		
+        /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">  
+     <script src="function.js"></script> 
+
+
+</head>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB6zDr_Q97H_PAzZvzJEQpQe8ZoL_-wVQY",
+    authDomain: "abalabal-178510.firebaseapp.com",
+    databaseURL: "https://abalabal-178510.firebaseio.com",
+    projectId: "abalabal-178510",
+    storageBucket: "abalabal-178510.appspot.com",
+    messagingSenderId: "837346273414"
+  };
+  firebase.initializeApp(config);
+
+  </script>
+
+  
+ <style> 
+ body	{
+		background:#dddddd;
+		}
+		
+.input_form	{
+			padding:10px;
+			border:1px solid #aeaeae;
+			border-radius:5px;
+			float:left;
+			width:300px;
+			}		
+.send_form	{
+			padding:10px;
+			border:1px solid #aeaeae;
+			border-radius:5px;
+			float:left;
+			width:100px;
+			}			
+			
+.box_daform	{
+			border:1px solid #aeaeae;
+			padding:5px;
+			float:left;
+			width:95%;
+			}	
+.bg_alm		{
+			padding:5px;
+			width:95%;
+			border-radius:5px;
+			background:#f1f1f1;
+			float:left;
+			margin:5px;
+			border:1px solid #aeaeae;
+			}
+			
+.Dialog_prev{
+			background:#ffffff;
+			position:absolute;
+			left:5px;
+			right:5px;
+			top:5px;
+			padding-bottom:5px;
+			overflow:auto;
+			bottom:65px;
+			border:1px solid #aeaeae;
+			}			
+			
+.title_sb	{
+			padding:5px;
+			float:left;
+			border:1px solid #aeaeae;
+			}					
+.url_sb	{
+			display:none;
+			padding:5px;
+			float:left;
+			border:1px solid #aeaeae;
+			}		
+			
+.title_dl	{
+			padding:5px;
+			cursor:pointer;
+			float:right;
+			border:1px solid #aeaeae;
+			}				
+.url_dl	{
+			padding:5px;
+			cursor:pointer;
+			float:left;
+			border:1px solid #aeaeae;
+			}		
+
+.audio		{
+			background:#ffffff;
+			position:absolute;
+			right:5px;
+			left:5px;
+			bottom:5px;
+			border:1px solid #aeaeae;
+			
+			padding:5px;
+			}
+
+audio		{
+			width:100%;
+			background:#ffffff;
+			border-radius:100px;
+			margin-top:2px;
+			}			
+			
+.Dialog_msks{
+			background:#ffffff;
+			border:1px solid #aeaeae;
+			position:absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			bottom:0px;
+			}			
+			
+			
+.mydiv {
+    position: absolute;
+	left:5px;
+	top:5px;
+	right:5px;
+	bottom:5px;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 1px solid #d3d3d3;
+}
+
+.mydivheader {
+    padding: 20px;
+    cursor: move;
+    z-index: -2;
+    background-color: #2196F3;
+    color: #fff;
+}			
+			
+.hsas	{
+		position:fixed;
+		top:0px;
+		z-index:100;
+}			
+ </style> 
+  
+  
+  
+  
+  
+
+
+  
+   <div  id="mydiv" class="mydiv">
+
+  
+  <div class="Dialog_msks" > 
+  <div class='audio' >  
+   <audio id='myAudio' controls>
+  <source src='' type='audio/mpeg'>Your browser does not support the audio element.</audio>   
+ </div>
+  
+  <div class="Dialog_prev" id="Dialog_prev" ></div>
+  </div>
+  
+
+  </div>
+  
+  
+
+  
+  
+  
+
+
+ 
+
+
+<script> 	
+
+//firebase.database().ref().child('post/1528769461802/url_file').on('value', snap => document.getElementById('hsas').value  = snap.val());
+  
+
+
+
+function playAudio(Audios){
+	var url_aud = document.getElementById(Audios).value;
+	var x = document.getElementById("myAudio");
+	x.src=url_aud;
+    x.play();
+} 
+
+
+  
+ 
+function crt_box(obj_clik){
+var div = document.createElement("div");
+div.id = obj_clik+"x";
+div.setAttribute('class', 'bg_alm');
+//div.onmouseover=function(){on_over(this);};
+//div.onclick=function(){Delete_posts("post/"+obj_clik);};
+htmx="";
+htmx=htmx+"<div  id='"+obj_clik+"title' class='title_sb' ></div>";
+htmx=htmx+"<input  id='"+obj_clik+"url_file' class='url_sb' >";
+
+
+htmx=htmx+"<div onClick='playAudio(\""+obj_clik+"url_file\");' class='title_dl' >play</div>";
+
+
+
+div.innerHTML =htmx;
+var para = document.body;
+//document.body.appendChild(div);
+document.getElementById("Dialog_prev").appendChild(div);
+
+
+}
+ 
+  
+
+
+ function Onload_body()
+{ 
+ // for each child:
+ document.getElementById('Dialog_prev').innerHTML="";  
+var query = firebase.database().ref("post").orderByKey();
+	query.once("value").then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+	//===========================================
+	  //fungsi load
+	  crt_box(key);
+	  firebase.database().ref().child('post/'+key+'/title').on('value', snap => document.getElementById(key+'title').innerHTML  = snap.val());
+	  firebase.database().ref().child('post/'+key+'/url_file').on('value', snap => document.getElementById(key+'url_file').value  = snap.val());
+	  
+	  var All_post =Number(All_post)+1; 
+  });
+});
+}
+
+
+
+Onload_body();
+
+
+
+
+
+
+
+
+
+window.onkeydown = function(e)	{  
+if(e.ctrlKey == true){return false;}
+								};
+
+
+
+
+function Play_pause()
+{
+	var x = document.getElementById("myAudio");
+		if (x.paused==true)
+		{
+	document.getElementById("myAudio").play();		
+		}
+		else
+		{	
+document.getElementById("myAudio").pause();	
+		}
+}								
+								
+								
+
+	
+//set max_database	
+//	firebase.database().ref('max').set(New_id);	
+	
+// firebase.database().ref(id_news).remove();
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
